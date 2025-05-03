@@ -2,6 +2,8 @@ package com.example.diarioestudantesmvvm.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -48,11 +50,21 @@ public class MainActivity extends AppCompatActivity {
         binding.recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            // Recarrega a lista quando retorna da DetalhesEstudanteActivity
+            estudantesViewModel.recarregarEstudantes();
+        }
+    }
+
     public void onEstudanteClicado(Estudante estudante) {
         if (estudante != null) {
             Intent intent = new Intent(this, DetalhesEstudanteActivity.class);
             intent.putExtra("ESTUDANTE_ID", estudante.getId());
-            startActivity(intent);
+            startActivityForResult(intent, 1);
         }
     }
 }

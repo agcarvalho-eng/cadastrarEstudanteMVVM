@@ -87,4 +87,11 @@ public class EstudantesViewModel extends ViewModel implements DefaultLifecycleOb
             manipulador.cancel(false);
         }
     }
+
+    public void recarregarEstudantes() {
+        if (manipulador != null) {
+            manipulador.cancel(false); // Cancela a tarefa atual
+        }
+        onStart(null); // Força um novo carregamento
+    }
 }

@@ -18,6 +18,13 @@ public class DetalhesEstudanteActivity extends AppCompatActivity {
         binding = ActivityDetalhesEstudanteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Configura o botão voltar
+        binding.btnVoltar.setOnClickListener(v -> {
+            // Define o resultado para recarregar a lista
+            setResult(RESULT_OK);
+            finish();
+        });
+
         viewModel = new ViewModelProvider(this).get(DetalhesEstudanteViewModel.class);
 
         int estudanteId = getIntent().getIntExtra("ESTUDANTE_ID", -1);
