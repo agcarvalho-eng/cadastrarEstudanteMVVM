@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!-- ViewModel que fornece os dados -->
+        <variable
+            name="viewModel"
+            type="com.example.diarioestudantesmvvm.util.EstudantesViewModel" />
+
+        <!-- Referência para a Activity -->
+        <variable
+            name="activity"
+            type="com.example.diarioestudantesmvvm.view.MainActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Cabeçalho da lista -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lista de Estudantes:"
+            android:textAlignment="center"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- RecyclerView que exibe a lista de estudantes -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:items="@{viewModel.estudantes}"
+            app:itemClickListener="@{activity::onEstudanteClicado}"
+            tools:listitem="@layout/item_estudante"/>
+    </LinearLayout>
+</layout>
