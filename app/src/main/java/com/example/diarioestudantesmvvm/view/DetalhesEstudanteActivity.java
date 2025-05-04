@@ -18,20 +18,23 @@ public class DetalhesEstudanteActivity extends AppCompatActivity {
         binding = ActivityDetalhesEstudanteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Configura o ViewModel
+        viewModel = new ViewModelProvider(this).get(DetalhesEstudanteViewModel.class);
+        getLifecycle().addObserver(viewModel);
+
+        // Obtém o ID do estudante da Intent
+        int estudanteId = getIntent().getIntExtra("ESTUDANTE_ID", -1);
+        if (estudanteId != -1) {
+            viewModel.setEstudanteId(estudanteId);
+        }
+
         // Configura o botão voltar
         binding.btnVoltar.setOnClickListener(v -> {
-            // Define o resultado para recarregar a lista
             setResult(RESULT_OK);
             finish();
         });
 
-        viewModel = new ViewModelProvider(this).get(DetalhesEstudanteViewModel.class);
-
-        int estudanteId = getIntent().getIntExtra("ESTUDANTE_ID", -1);
-        if (estudanteId != -1) {
-            viewModel.carregarEstudante(estudanteId);
-        }
-
+        // Observa as mudanças nos dados do estudante
         viewModel.getEstudante().observe(this, estudante -> {
             if (estudante != null) {
                 binding.setEstudante(estudante);
