@@ -17,7 +17,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Estatísticas Gerais"
+                android:text="@string/estat_sticas_gerais"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -52,10 +52,10 @@
                 android:layout_marginBottom="24dp"/>
 
             <TextView
-                android:id="@+id/textViewAprovadosLabel"
+                android:id="@+id/text_view_aprovados"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aprovados:"
+                android:text="@string/aprovados"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"/>
@@ -68,10 +68,10 @@
                 tools:listitem="@layout/item_estudante"/>
 
             <TextView
-                android:id="@+id/textViewReprovadosLabel"
+                android:id="@+id/text_view_reprovados"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reprovados:"
+                android:text="@string/reprovados"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"/>
@@ -87,7 +87,7 @@
                 android:id="@+id/btnVoltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Voltar"
+                android:text="@string/voltar2"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"/>
 

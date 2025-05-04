@@ -73,6 +73,7 @@ public class EstudantesViewModel extends ViewModel implements DefaultLifecycleOb
                 if (!novosEstudantes.equals(cacheEstudantes)) {
                     cacheEstudantes = novosEstudantes;
                     estudantesLiveData.postValue(novosEstudantes);
+                    // Seta os novos estudantes
                     EstudantesRepository.getInstance().setEstudantes(novosEstudantes);
                 }
 

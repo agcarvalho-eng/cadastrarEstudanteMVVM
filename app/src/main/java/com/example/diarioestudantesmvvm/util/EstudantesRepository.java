@@ -20,6 +20,9 @@ public class EstudantesRepository {
 
     private EstudantesRepository() {}
 
+    /** Implementa o padrão Singleton, garantindo que apenas uma instância da classe
+     *  EstudantesRepository seja criada e acessada de forma thread-safe.
+     */
     public static synchronized EstudantesRepository getInstance() {
         if (instance == null) {
             instance = new EstudantesRepository();
@@ -27,6 +30,7 @@ public class EstudantesRepository {
         return instance;
     }
 
+    // Atualiza ou cria nova lista de estudantes
     public void setEstudantes(List<Estudante> novosEstudantes) {
         this.estudantes = novosEstudantes != null ? new ArrayList<>(novosEstudantes) : new ArrayList<>();
     }
@@ -35,14 +39,14 @@ public class EstudantesRepository {
         return new ArrayList<>(estudantes);
     }
 
-    // Método movido do EstatisticasViewModel
+    // Método buscar todos os estudantes
     public List<Estudante> buscarTodosEstudantesCompletos() {
         List<Estudante> estudantesCompletos = new ArrayList<>();
 
         try {
             InputStream resposta = conexao.obterRespostaHTTPS(URL_BASE);
             if (resposta == null) {
-                Log.e("EstudantesRepo", "Resposta nula ao buscar estudantes");
+                Log.e("EstudantesRepo", "Resposta nula ao buscar estudantes!");
                 return null;
             }
 
@@ -62,14 +66,14 @@ public class EstudantesRepository {
             setEstudantes(estudantesCompletos);
 
         } catch (Exception e) {
-            Log.e("EstudantesRepo", "Erro ao buscar estudantes completos", e);
+            Log.e("EstudantesRepo", "Erro ao buscar estudantes completos!", e);
             return null;
         }
 
         return estudantesCompletos;
     }
 
-    // Método movido do EstatisticasViewModel
+    // Método buscar estudante pelo Id
     public Estudante buscarEstudantePorId(int id) {
         try {
             String url = URL_BASE + id;

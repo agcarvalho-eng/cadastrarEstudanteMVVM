@@ -1,6 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DiarioEstudantesMVVM</string>
-    <string name="descricao_fab">Ver estatísticas</string>
     <string name="detalhes_do_estudante">Detalhes do Estudante:</string>
     <string name="voltar">Voltar</string>
     <string name="estat_sticas_gerais">Estatísticas Gerais</string>

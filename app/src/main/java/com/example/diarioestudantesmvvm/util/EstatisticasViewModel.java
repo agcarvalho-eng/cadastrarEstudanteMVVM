@@ -49,7 +49,7 @@ public class EstatisticasViewModel extends ViewModel implements DefaultLifecycle
                     calcularEAtualizarEstatisticas(estudantesCompletos);
                 }
             } catch (Exception e) {
-                Log.e("EstatisticasVM", "Erro ao calcular estatísticas", e);
+                Log.e("EstatisticasVM", "Erro ao calcular estatísticas!", e);
             }
         }, 0, 30, TimeUnit.SECONDS);
     }
@@ -61,9 +61,10 @@ public class EstatisticasViewModel extends ViewModel implements DefaultLifecycle
         }
     }
 
+    // Método void para calcular e atualizar as estatísticas
     private void calcularEAtualizarEstatisticas(List<Estudante> estudantes) {
         if (estudantes == null || estudantes.isEmpty()) {
-            Log.w("EstatisticasVM", "Lista de estudantes vazia");
+            Log.w("EstatisticasVM", "Lista de estudantes vazia!");
             return;
         }
 
@@ -89,13 +90,6 @@ public class EstatisticasViewModel extends ViewModel implements DefaultLifecycle
         } catch (Exception e) {
             Log.e("EstatisticasVM", "Erro ao calcular estatísticas", e);
         }
-    }
-
-    public void recarregarEstatisticas() {
-        if (manipulador != null) {
-            manipulador.cancel(false);
-        }
-        onStart(null);
     }
 
     @Override

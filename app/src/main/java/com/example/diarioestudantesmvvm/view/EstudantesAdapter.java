@@ -26,7 +26,6 @@ public class EstudantesAdapter extends RecyclerView.Adapter<EstudantesAdapter.Es
 
     /**
      * Construtor do adapter
-     * @param estudantes Lista inicial de estudantes
      */
     public EstudantesAdapter(List<Estudante> estudantes) {
         this.estudantes = estudantes;

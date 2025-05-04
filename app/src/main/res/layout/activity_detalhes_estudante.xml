@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Detalhes do Estudante:"
+                android:text="@string/detalhes_do_estudante"
                 android:textAlignment="center"
                 android:textSize="28sp"
                 android:textStyle="bold"
@@ -70,7 +70,7 @@
                 android:id="@+id/btnVoltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Voltar"
+                android:text="@string/voltar"
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"/>
