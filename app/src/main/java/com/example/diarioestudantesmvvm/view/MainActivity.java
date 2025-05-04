@@ -11,6 +11,7 @@ import com.example.diarioestudantesmvvm.R;
 import com.example.diarioestudantesmvvm.databinding.ActivityMainBinding;
 import com.example.diarioestudantesmvvm.model.Estudante;
 import com.example.diarioestudantesmvvm.util.EstudantesViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         setupRecyclerView();
 
+        setupFloatingActionButton();
+
         // Observar as mudanças na lista de estudantes
         estudantesViewModel.getEstudantes().observe(this, estudantes -> {
             // A atualização da lista é feita automaticamente pelo BindingAdapter
@@ -50,21 +53,31 @@ public class MainActivity extends AppCompatActivity {
         binding.recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
-            // Recarrega a lista quando retorna da DetalhesEstudanteActivity
-            estudantesViewModel.recarregarEstudantes();
-        }
-    }
-
     public void onEstudanteClicado(Estudante estudante) {
         if (estudante != null) {
             Intent intent = new Intent(this, DetalhesEstudanteActivity.class);
             intent.putExtra("ESTUDANTE_ID", estudante.getId());
             startActivityForResult(intent, 1);
+        }
+    }
+
+    private void setupFloatingActionButton() {
+        FloatingActionButton fab = binding.fabEstatisticas;
+        fab.setOnClickListener(view -> {
+            // Navega para a EstatisticasActivity
+            Intent intent = new Intent(MainActivity.this, EstatisticasActivity.class);
+            startActivityForResult(intent, 2);
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Verifica se é o retorno da EstatisticasActivity (requestCode == 2)
+        // ou DetalhesEstudanteActivity (requestCode == 1)
+        if (resultCode == RESULT_OK) {
+            estudantesViewModel.recarregarEstudantes();
         }
     }
 }

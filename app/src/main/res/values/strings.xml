@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DiarioEstudantesMVVM</string>
+    <string name="descricao_fab">Ver estatísticas</string>
 </resources>

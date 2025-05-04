@@ -27,6 +27,14 @@
             android:name=".view.DetalhesEstudanteActivity"
             android:exported="false"
             tools:ignore="Instantiatable" />
+        <activity
+            android:name=".view.EstatisticasActivity"
+            android:exported="false"
+            android:parentActivityName=".view.MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".view.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
