@@ -3,38 +3,94 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:fillViewport="true">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Estatísticas Gerais"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp"/>
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <!-- Aqui você pode adicionar os componentes de estatísticas -->
-        <!-- Exemplo: -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Média geral da turma:"
-            android:textSize="18sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estatísticas Gerais"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="24dp"/>
 
-        <!-- Adicione mais componentes conforme necessário -->
+            <TextView
+                android:id="@+id/textMediaGeral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"/>
 
-        <Button
-            android:id="@+id/btnVoltar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Voltar"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp"/>
+            <TextView
+                android:id="@+id/textMaiorNota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textMenorNota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/textMediaIdade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginBottom="24dp"/>
+
+            <TextView
+                android:id="@+id/textViewAprovadosLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aprovados:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewAprovados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                tools:listitem="@layout/item_estudante"/>
+
+            <TextView
+                android:id="@+id/textViewReprovadosLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reprovados:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewReprovados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                tools:listitem="@layout/item_estudante"/>
+
+            <Button
+                android:id="@+id/btnVoltar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voltar"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"/>
+
+        </LinearLayout>
+    </ScrollView>
 </layout>

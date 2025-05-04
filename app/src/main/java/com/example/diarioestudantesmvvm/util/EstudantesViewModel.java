@@ -73,6 +73,7 @@ public class EstudantesViewModel extends ViewModel implements DefaultLifecycleOb
                 if (!novosEstudantes.equals(cacheEstudantes)) {
                     cacheEstudantes = novosEstudantes;
                     estudantesLiveData.postValue(novosEstudantes);
+                    EstudantesRepository.getInstance().setEstudantes(novosEstudantes);
                 }
 
             } catch (Exception e) {
@@ -93,5 +94,11 @@ public class EstudantesViewModel extends ViewModel implements DefaultLifecycleOb
             manipulador.cancel(false); // Cancela a tarefa atual
         }
         onStart(null); // Força um novo carregamento
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        executor.shutdown();
     }
 }
