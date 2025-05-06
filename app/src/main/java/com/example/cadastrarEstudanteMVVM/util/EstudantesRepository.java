@@ -1,8 +1,8 @@
-package com.example.diarioestudantesmvvm.util;
+package com.example.cadastrarEstudanteMVVM.util;
 
 import android.util.Log;
 
-import com.example.diarioestudantesmvvm.model.Estudante;
+import com.example.cadastrarEstudanteMVVM.model.Estudante;
 
 import org.json.JSONArray;
 import org.json.JSONException;

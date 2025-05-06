@@ -1,4 +1,4 @@
-package com.example.diarioestudantesmvvm.model;
+package com.example.cadastrarEstudanteMVVM.model;
 
 import java.io.Serializable;
 import java.util.List;

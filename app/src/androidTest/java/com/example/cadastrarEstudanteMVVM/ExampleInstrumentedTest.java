@@ -1,4 +1,4 @@
-package com.example.diarioestudantesmvvm;
+package com.example.cadastrarEstudanteMVVM;
 
 import android.content.Context;
 

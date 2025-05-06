@@ -1,14 +1,15 @@
-package com.example.diarioestudantesmvvm.view;
+package com.example.cadastrarEstudanteMVVM.view;
 
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
-import com.example.diarioestudantesmvvm.R;
-import com.example.diarioestudantesmvvm.databinding.ActivityMainBinding;
-import com.example.diarioestudantesmvvm.model.Estudante;
-import com.example.diarioestudantesmvvm.util.EstudantesViewModel;
+
+import com.example.cadastrarEstudanteMVVM.R;
+import com.example.cadastrarEstudanteMVVM.databinding.ActivityMainBinding;
+import com.example.cadastrarEstudanteMVVM.model.Estudante;
+import com.example.cadastrarEstudanteMVVM.util.EstudantesViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
@@ -51,10 +52,6 @@ public class MainActivity extends AppCompatActivity {
         // Configura o botão flutuante (FAB) para navegar para a tela de estatísticas
         setupBotaoFlutuante();
 
-        // Observa mudanças na lista de estudantes (a atualização da UI é feita pelo BindingAdapter)
-        estudantesViewModel.getEstudantes().observe(this, estudantes -> {
-            // O adaptador é atualizado automaticamente via BindingAdapter, então nada precisa ser feito aqui
-        });
     }
 
     // Configura o RecyclerView principal com um adaptador vazio e um listener de clique
@@ -75,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
         if (estudante != null) {
             Intent intent = new Intent(this, DetalhesEstudanteActivity.class);
             intent.putExtra("ESTUDANTE_ID", estudante.getId());
+            /**
+             * Inicia a Activity informando qual foi a Activity que mandou o retorno.
+             * O número "1" informa que foi a DetalhesEstudanteActivity
+             */
             startActivityForResult(intent, 1); // Código 1 para retorno da DetalhesEstudanteActivity
         }
     }

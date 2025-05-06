@@ -4,7 +4,7 @@
     <data>
         <variable
             name="estudante"
-            type="com.example.diarioestudantesmvvm.model.Estudante" />
+            type="com.example.cadastrarEstudanteMVVM.model.Estudante" />
     </data>
 
     <LinearLayout

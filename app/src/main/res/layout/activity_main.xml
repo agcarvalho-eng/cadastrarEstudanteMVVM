@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.diarioestudantesmvvm.util.EstudantesViewModel" />
+            type="com.example.cadastrarEstudanteMVVM.util.EstudantesViewModel" />
         <variable
             name="activity"
-            type="com.example.diarioestudantesmvvm.view.MainActivity" />
+            type="com.example.cadastrarEstudanteMVVM.view.MainActivity" />
     </data>
 
     <FrameLayout

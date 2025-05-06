@@ -1,12 +1,12 @@
-package com.example.diarioestudantesmvvm.view;
+package com.example.cadastrarEstudanteMVVM.view;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.diarioestudantesmvvm.databinding.ActivityDetalhesEstudanteBinding;
-import com.example.diarioestudantesmvvm.model.Estudante;
-import com.example.diarioestudantesmvvm.util.DetalhesEstudanteViewModel;
+
+import com.example.cadastrarEstudanteMVVM.databinding.ActivityDetalhesEstudanteBinding;
+import com.example.cadastrarEstudanteMVVM.util.DetalhesEstudanteViewModel;
 
 public class DetalhesEstudanteActivity extends AppCompatActivity {
     private ActivityDetalhesEstudanteBinding binding;
@@ -15,7 +15,10 @@ public class DetalhesEstudanteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Inicializa o objeto binding usando o layout inflater para inflar (carregar) o layout da Activity com DataBinding
         binding = ActivityDetalhesEstudanteBinding.inflate(getLayoutInflater());
+
+        // Define a raiz (root) do layout inflado como o conteúdo da Activity (substitui setContentView(R.layout.activity_main))
         setContentView(binding.getRoot());
 
         // Configura o ViewModel

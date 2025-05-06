@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.diarioestudantesmvvm"
+    namespace = "com.example.cadastrarEstudanteMVVM"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.diarioestudantesmvvm"
+        applicationId = "com.example.cadastrarEstudanteMVVM"
         minSdk = 34
         targetSdk = 35
         versionCode = 1

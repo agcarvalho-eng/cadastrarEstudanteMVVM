@@ -1,4 +1,4 @@
-package com.example.diarioestudantesmvvm.view;
+package com.example.cadastrarEstudanteMVVM.view;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,8 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.diarioestudantesmvvm.databinding.ActivityEstatisticasBinding;
-import com.example.diarioestudantesmvvm.util.EstatisticasViewModel;
+
+import com.example.cadastrarEstudanteMVVM.databinding.ActivityEstatisticasBinding;
+import com.example.cadastrarEstudanteMVVM.util.EstatisticasViewModel;
 
 import java.util.ArrayList;
 
@@ -22,9 +23,12 @@ public class EstatisticasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Inicializa o objeto binding usando o layout inflater para inflar (carregar) o layout da Activity com DataBinding
         binding = ActivityEstatisticasBinding.inflate(getLayoutInflater());
+        // Define a raiz (root) do layout inflado como o conteúdo da Activity (substitui setContentView)
         setContentView(binding.getRoot());
 
+        // Configura o ViewModel
         viewModel = new ViewModelProvider(this).get(EstatisticasViewModel.class);
         getLifecycle().addObserver(viewModel);
 

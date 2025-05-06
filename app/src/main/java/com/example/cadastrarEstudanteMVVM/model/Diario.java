@@ -1,4 +1,4 @@
-package com.example.diarioestudantesmvvm.model;
+package com.example.cadastrarEstudanteMVVM.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

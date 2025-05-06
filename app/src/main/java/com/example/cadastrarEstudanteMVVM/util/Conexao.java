@@ -1,4 +1,4 @@
-package com.example.diarioestudantesmvvm.util;
+package com.example.cadastrarEstudanteMVVM.util;
 
 import android.net.SSLCertificateSocketFactory;
 
@@ -22,16 +22,16 @@ public class Conexao {
             // Cria um objeto URL a partir da string fornecida (URL do servidor)
             URL url = new URL(end);
 
-            // Abre a conexão HTTP com a URL fornecida
+            // Abre a conexão HTTPS com a URL fornecida
             HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
 
             con.setSSLSocketFactory(SSLCertificateSocketFactory.getInsecure(0, null));
             con.setHostnameVerifier(new AllowAllHostnameVerifier());
 
-            // Define o método de requisição HTTP como GET (padrão para obter dados)
+            // Define o método de requisição HTTPS como GET (padrão para obter dados)
             con.setRequestMethod("GET");
 
-            // Retorna o fluxo de entrada da resposta da requisição HTTP
+            // Retorna o fluxo de entrada da resposta da requisição HTTPS
             return con.getInputStream();
         } catch (MalformedURLException e) {
             // Exceção lançada quando a URL fornecida é inválida, imprime o erro

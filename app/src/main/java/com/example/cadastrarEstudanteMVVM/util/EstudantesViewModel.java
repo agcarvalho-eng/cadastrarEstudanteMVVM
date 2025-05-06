@@ -1,4 +1,4 @@
-package com.example.diarioestudantesmvvm.util;
+package com.example.cadastrarEstudanteMVVM.util;
 
 import android.util.Log;
 
@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.diarioestudantesmvvm.model.Estudante;
+import com.example.cadastrarEstudanteMVVM.model.Estudante;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -83,23 +83,32 @@ public class EstudantesViewModel extends ViewModel implements DefaultLifecycleOb
         }, 0, 30, TimeUnit.SECONDS);
     }
 
+    // Método onStop do ciclo de vida, que é chamado quando o LifecycleOwner (Activity/Fragment) entra no estado STOPPED.
     @Override
     public void onStop(@NonNull LifecycleOwner lifecycleOwner) {
+        // Verifica se há uma tarefa assíncrona em andamento (manipulador != null)
         if (manipulador != null) {
+            // Cancela a tarefa, mas sem interromper se já estiver executando (false = não forçar interrupção abrupta)
             manipulador.cancel(false);
         }
     }
 
+    // Método público que permite forçar a recarga dos estudantes
     public void recarregarEstudantes() {
+        // Se houver uma tarefa em execução, cancela-a antes de iniciar uma nova
         if (manipulador != null) {
             manipulador.cancel(false); // Cancela a tarefa atual
         }
+        // Inicia novamente o processo de carregamento (simula o onStart manualmente)
         onStart(null); // Força um novo carregamento
     }
 
+    // Método para limpeza de recursos quando o ViewModel é destruído
     @Override
     protected void onCleared() {
+        // Chama a implementação padrão do método para garantir comportamento esperado
         super.onCleared();
+        // Encerra o executor (gerenciador de tarefas assíncronas) liberando recursos
         executor.shutdown();
     }
 }

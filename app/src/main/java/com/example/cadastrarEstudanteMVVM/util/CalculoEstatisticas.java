@@ -1,6 +1,6 @@
-package com.example.diarioestudantesmvvm.util;
+package com.example.cadastrarEstudanteMVVM.util;
 
-import com.example.diarioestudantesmvvm.model.Estudante;
+import com.example.cadastrarEstudanteMVVM.model.Estudante;
 
 import java.util.ArrayList;
 import java.util.Collections;

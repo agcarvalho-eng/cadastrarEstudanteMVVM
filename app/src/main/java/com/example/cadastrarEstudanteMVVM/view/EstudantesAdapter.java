@@ -1,12 +1,14 @@
-package com.example.diarioestudantesmvvm.view;
+package com.example.cadastrarEstudanteMVVM.view;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.diarioestudantesmvvm.databinding.ItemEstudanteBinding;
-import com.example.diarioestudantesmvvm.model.Estudante;
+
+import com.example.cadastrarEstudanteMVVM.databinding.ItemEstudanteBinding;
+import com.example.cadastrarEstudanteMVVM.model.Estudante;
+
 import java.util.List;
 
 /**

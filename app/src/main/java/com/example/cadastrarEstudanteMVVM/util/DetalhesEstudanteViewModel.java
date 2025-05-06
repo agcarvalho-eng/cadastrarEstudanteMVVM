@@ -1,4 +1,4 @@
-package com.example.diarioestudantesmvvm.util;
+package com.example.cadastrarEstudanteMVVM.util;
 
 import android.util.Log;
 
@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.diarioestudantesmvvm.model.Estudante;
+import com.example.cadastrarEstudanteMVVM.model.Estudante;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -125,6 +125,7 @@ public class DetalhesEstudanteViewModel extends ViewModel implements DefaultLife
         return lista;
     }
 
+    // Método para limpeza de recursos quando o ViewModel é destruído
     @Override
     protected void onCleared() {
         super.onCleared();
