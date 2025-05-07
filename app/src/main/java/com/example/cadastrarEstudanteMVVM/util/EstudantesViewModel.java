@@ -26,7 +26,7 @@ public class EstudantesViewModel extends ViewModel implements DefaultLifecycleOb
 
     private final MutableLiveData<List<Estudante>> estudantesLiveData = new MutableLiveData<>();
     private final String URL = "https://10.0.2.2:8080/estudantes/";
-
+    private EstudantesRepository estudantesRepository = EstudantesRepository.getInstance();
     // Executor responsável por agendamento de tarefas periódicas
     private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
@@ -47,28 +47,9 @@ public class EstudantesViewModel extends ViewModel implements DefaultLifecycleOb
 
         manipulador = executor.scheduleWithFixedDelay(() -> {
             try {
-                Conexao conexao = new Conexao();
-                InputStream resposta = conexao.obterRespostaHTTPS(URL);
-                if (resposta == null) {
-                    Log.e("Erro de Conexão", "Não foi possível obter a resposta da URL.");
-                    return;
-                }
 
-                String json = conexao.converter(resposta);
-                Log.d("JSON Resposta", json);
-
-                JSONArray jsonArray = new JSONArray(json);
                 List<Estudante> novosEstudantes = new ArrayList<>();
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject obj = jsonArray.getJSONObject(i);
-                    Estudante estudante = new Estudante(
-                            obj.getInt("id"),
-                            obj.getString("nome"),
-                            obj.getInt("idade")
-                    );
-                    novosEstudantes.add(estudante);
-                }
+                novosEstudantes = estudantesRepository.buscarTodosEstudantes();
 
                 if (!novosEstudantes.equals(cacheEstudantes)) {
                     cacheEstudantes = novosEstudantes;

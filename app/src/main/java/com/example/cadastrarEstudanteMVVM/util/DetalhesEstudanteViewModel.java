@@ -81,27 +81,15 @@ public class DetalhesEstudanteViewModel extends ViewModel implements DefaultLife
     // Método que realiza o carregamento dos dados do estudante
     private void carregarDadosEstudante(int estudanteId) {
         try {
-            String url = URL_BASE + estudanteId;
-            InputStream resposta = conexao.obterRespostaHTTPS(url);
-            if (resposta == null) {
-                Log.e("DetalhesEstVM", "Resposta nula para estudante ID: " + estudanteId);
-                return;
+            // Usa o repositório para buscar os dados do estudante
+            Estudante estudante = EstudantesRepository.getInstance().buscarDadosEstudante(estudanteId);
+
+            // Verifica se estudante foi retornado corretamente
+            if (estudante != null) {
+                estudanteLiveData.postValue(estudante);
+            } else {
+                Log.e("DetalhesEstVM", "Estudante nulo retornado pelo repositório");
             }
-
-            String json = conexao.converter(resposta);
-            JSONObject obj = new JSONObject(json);
-
-            // Converte o JSON para objeto Estudante
-            Estudante estudante = new Estudante(
-                    obj.getInt("id"),
-                    obj.getString("nome"),
-                    obj.getInt("idade"),
-                    converterJsonParaListaDouble(obj.getJSONArray("notas")),
-                    converterJsonParaListaBoolean(obj.getJSONArray("presenca"))
-            );
-
-            // Atualiza o LiveData
-            estudanteLiveData.postValue(estudante);
 
         } catch (Exception e) {
             Log.e("DetalhesEstVM", "Erro ao carregar estudante ID: " + estudanteId, e);

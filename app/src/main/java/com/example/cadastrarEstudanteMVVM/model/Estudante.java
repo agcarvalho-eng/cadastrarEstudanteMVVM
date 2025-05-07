@@ -51,6 +51,13 @@ public class Estudante implements Serializable {
         this.presenca = presenca;
     }
 
+    public Estudante(String nome, int idade) {
+        super();
+        this.nome = nome;
+        this.idade = idade;
+
+    }
+
     // Getters e setters
 
     public int getId() {

@@ -67,7 +67,7 @@ public class EstudantesAdapter extends RecyclerView.Adapter<EstudantesAdapter.Es
 
         // Vincula o estudante ao layout
         holder.binding.setEstudante(estudante);
-
+        holder.binding.executePendingBindings();
         // Configura o clique
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {

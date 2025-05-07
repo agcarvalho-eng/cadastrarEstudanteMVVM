@@ -2,11 +2,14 @@ package com.example.cadastrarEstudanteMVVM.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cadastrarEstudanteMVVM.R;
+
 import com.example.cadastrarEstudanteMVVM.databinding.ActivityMainBinding;
 import com.example.cadastrarEstudanteMVVM.model.Estudante;
 import com.example.cadastrarEstudanteMVVM.util.EstudantesViewModel;
@@ -94,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
              */
             startActivityForResult(intent, 2);
         });
+    }
+
+    // Método para abrir a view CadastrarEstudanteFragmento
+    public void abrirActivityCadastrarEstudante(View view) {
+        Intent intent = new Intent(this, CadastrarEstudanteActivity.class);
+        startActivityForResult(intent, 3); // Código 3 para CadastrarEstudanteActivity
     }
 
     // Trata o retorno das Activities chamadas com startActivityForResult

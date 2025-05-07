@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -72,4 +74,39 @@ public class Conexao {
         // Retorna o conteúdo completo como uma String
         return stringBuilder.toString();
     }
+
+    // Método para fazer o Post (cadastrar estudante)
+    public void enviarPost(String urlString, String json) throws IOException {
+        HttpsURLConnection connection = null;
+        try {
+            URL url = new URL(urlString);
+            connection = (HttpsURLConnection) url.openConnection();
+
+            // Configurações SSL para desenvolvimento (não use em produção)
+            connection.setSSLSocketFactory(SSLCertificateSocketFactory.getInsecure(0, null));
+            connection.setHostnameVerifier(new AllowAllHostnameVerifier());
+
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            // Escreve o JSON no corpo da requisição
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = json.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            // Verifica a resposta
+            int responseCode = connection.getResponseCode();
+            if (responseCode != HttpURLConnection.HTTP_CREATED && responseCode != HttpURLConnection.HTTP_OK) {
+                throw new IOException("HTTP error code: " + responseCode);
+            }
+
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+    }
+
 }

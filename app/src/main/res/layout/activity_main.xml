@@ -32,7 +32,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:items="@{viewModel.estudantes}"
                 app:itemClickListener="@{activity::onEstudanteClicado}"
@@ -49,5 +50,16 @@
             android:src="@drawable/ic_add"
             app:backgroundTint="@color/black"
             app:tint="@android:color/white"/>
+        <Button
+            android:id="@+id/btnAdicionarEstudante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="16dp"
+            android:text="Add Estudante"
+            android:onClick="abrirActivityCadastrarEstudante"
+            android:backgroundTint="@color/cyan"
+            android:textColor="@android:color/white"/>
+
     </FrameLayout>
 </layout>
