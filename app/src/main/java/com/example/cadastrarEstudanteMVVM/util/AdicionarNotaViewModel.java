@@ -12,13 +12,13 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-public class CadastrarEstudanteViewModel extends ViewModel implements DefaultLifecycleObserver {
+public class AdicionarNotaViewModel extends ViewModel implements DefaultLifecycleObserver {
     private final EstudantesRepository repository = EstudantesRepository.getInstance();
     private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     private ScheduledFuture<?> manipulador;
 
-    public interface OnEstudanteCadastradoListener {
-        void onSuccess(Estudante estudante);
+    public interface OnNotaAdicionadaListener {
+        void onSuccess();
         void onError(String mensagem);
     }
 
@@ -27,21 +27,27 @@ public class CadastrarEstudanteViewModel extends ViewModel implements DefaultLif
         // Pode ser usado para iniciar operações periódicas se necessário
     }
 
-    public void cadastrarEstudante(Estudante estudante, OnEstudanteCadastradoListener listener) {
+    public void adicionarNota(int estudanteId, double nota, OnNotaAdicionadaListener listener) {
         if (manipulador != null && !manipulador.isDone()) {
             manipulador.cancel(false);
         }
 
         manipulador = executor.schedule(() -> {
             try {
-                boolean sucesso = repository.cadastrarEstudante(estudante);
-                if (sucesso) {
-                    listener.onSuccess(estudante);
+                Estudante estudante = repository.buscarDadosEstudante(estudanteId);
+                if (estudante != null) {
+                    estudante.getNotas().add(nota);
+                    boolean sucesso = repository.atualizarEstudante(estudante);
+                    if (sucesso) {
+                        listener.onSuccess();
+                    } else {
+                        listener.onError("Falha ao atualizar notas do estudante");
+                    }
                 } else {
-                    listener.onError("Falha ao cadastrar estudante");
+                    listener.onError("Estudante não encontrado");
                 }
             } catch (Exception e) {
-                listener.onError("Erro ao cadastrar: " + e.getMessage());
+                listener.onError("Erro ao adicionar nota: " + e.getMessage());
             }
         }, 0, TimeUnit.MILLISECONDS);
     }

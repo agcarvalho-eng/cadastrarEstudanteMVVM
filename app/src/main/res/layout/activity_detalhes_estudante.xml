@@ -67,6 +67,29 @@
                 android:textStyle="bold"/>
 
             <Button
+                android:id="@+id/btnAdicionarNota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Nota"
+                android:layout_marginTop="24dp"/>
+
+            <Button
+                android:id="@+id/btnAdicionarFrequencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Frequência"
+                android:layout_marginTop="8dp"/>
+
+            <Button
+                android:id="@+id/btnDeletarEstudante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Deletar Estudante"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="24dp"/>
+
+            <Button
                 android:id="@+id/btnVoltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

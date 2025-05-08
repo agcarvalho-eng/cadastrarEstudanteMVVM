@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -26,6 +28,16 @@ public class MainActivity extends AppCompatActivity {
 
     // ViewModel que gerencia os dados dos estudantes
     private EstudantesViewModel estudantesViewModel;
+
+    // Launcher para registrar a Activity de cadastro
+    private final ActivityResultLauncher<Intent> cadastroLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    estudantesViewModel.recarregarEstudantes();
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

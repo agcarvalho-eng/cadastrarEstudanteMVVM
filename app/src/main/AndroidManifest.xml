@@ -19,30 +19,34 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".view.DetalhesEstudanteActivity"
-            android:exported="false"
-            tools:ignore="Instantiatable" />
+            android:exported="false"/>
+
         <activity
             android:name=".view.EstatisticasActivity"
             android:exported="false"
-            android:parentActivityName=".view.MainActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".view.MainActivity" />
-        </activity>
+            android:parentActivityName=".view.MainActivity"/>
+
         <activity
             android:name=".view.CadastrarEstudanteActivity"
             android:exported="false"
-            android:parentActivityName=".view.MainActivity" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".view.MainActivity" />
-        </activity>
+            android:parentActivityName=".view.MainActivity" />
+
+        <activity
+            android:name=".view.AdicionarFrequenciaActivity"
+            android:exported="false"
+            android:parentActivityName=".view.DetalhesEstudanteActivity" />
+
+        <activity
+            android:name=".view.AdicionarNotaActivity"
+            android:exported="false"
+            android:parentActivityName=".view.DetalhesEstudanteActivity" />
+
+
     </application>
 
 </manifest>
