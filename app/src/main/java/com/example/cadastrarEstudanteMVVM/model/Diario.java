@@ -15,7 +15,7 @@ public class Diario {
     @Expose // Este campo deve ser incluído no documento
     private List<Estudante> estudantes;
 
-    // Construtores.
+    // Construtores
     public Diario() {
     }
 

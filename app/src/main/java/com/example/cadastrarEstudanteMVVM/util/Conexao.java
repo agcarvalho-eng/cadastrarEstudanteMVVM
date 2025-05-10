@@ -19,35 +19,6 @@ import javax.net.ssl.HttpsURLConnection;
 // Classe Conexao lida com operações relacionadas à conexão HTTP e conversão de dados recebidos
 public class Conexao {
 
-//    // Método para obter a resposta de uma URL através de uma requisição HTTP (Aqui será tipo GET)
-//    public InputStream obterRespostaHTTPS(String end) {
-//        try {
-//            // Cria um objeto URL a partir da string fornecida (URL do servidor)
-//            URL url = new URL(end);
-//
-//            // Abre a conexão HTTPS com a URL fornecida
-//            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-//
-//            con.setSSLSocketFactory(SSLCertificateSocketFactory.getInsecure(0, null));
-//            con.setHostnameVerifier(new AllowAllHostnameVerifier());
-//
-//            // Define o método de requisição HTTPS como GET (padrão para obter dados)
-//            con.setRequestMethod("GET");
-//
-//            // Retorna o fluxo de entrada da resposta da requisição HTTPS
-//            return con.getInputStream();
-//        } catch (MalformedURLException e) {
-//            // Exceção lançada quando a URL fornecida é inválida, imprime o erro
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            // Exceção lançada em caso de erro de entrada/saída (falha de rede ou na requisição)
-//            e.printStackTrace();
-//        }
-//
-//        // Caso haja algum erro, retorna null
-//        return null;
-//    }
-
     // Método genérico para requisições HTTPS
     public InputStream fazerRequisicao(String urlString, String metodo, String json) throws IOException {
         URL url = new URL(urlString);
@@ -57,7 +28,7 @@ public class Conexao {
         con.setSSLSocketFactory(SSLCertificateSocketFactory.getInsecure(0, null));
         con.setHostnameVerifier(new AllowAllHostnameVerifier());
 
-        // Configura o método HTTP e cabeçalhos
+        // Configura o método HTTPS e cabeçalhos
         con.setRequestMethod(metodo);
         con.setRequestProperty("Content-Type", "application/json");
         con.setDoOutput(json != null);
@@ -79,78 +50,15 @@ public class Conexao {
         fazerRequisicao(urlString, "POST", json);
     }
 
-    // Novo método para enviar PUT (atualização)
+    // Método para enviar PUT (atualização)
     public void enviarPut(String urlString, String json) throws IOException {
         fazerRequisicao(urlString, "PUT", json);
     }
 
-    // Novo método para enviar DELETE (remoção)
+    // Método para enviar DELETE (remoção)
     public void enviarDelete(String urlString) throws IOException {
         fazerRequisicao(urlString, "DELETE", null);
     }
-
-
-//    // Método para converter o conteúdo de um InputStream (fluxo de dados) em uma String
-//    public String converter(InputStream inputStream) {
-//        // Cria um InputStreamReader para ler o fluxo de bytes e convertê-lo em caracteres
-//        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//
-//        // Cria um BufferedReader para ler o conteúdo de maneira mais eficiente
-//        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//
-//        // Construir a String final
-//        StringBuilder stringBuilder = new StringBuilder();
-//
-//        // Variável para armazenar cada linha lida do BufferedReader
-//        String conteudo = "";
-//
-//        try {
-//            // Enquanto houver linhas para ler, continua lendo e adicionando ao StringBuilder
-//            while ((conteudo = bufferedReader.readLine()) != null) {
-//                stringBuilder.append(conteudo).append("\n");
-//            }
-//        } catch (IOException e) {
-//            // Exceção lançada em caso de erro de leitura do InputStream, imprime o erro
-//            e.printStackTrace();
-//        }
-//
-//        // Retorna o conteúdo completo como uma String
-//        return stringBuilder.toString();
-//    }
-//
-//    // Método para fazer o Post (cadastrar estudante)XXXXALTERADO NOME DO MÉTODO PARA TESTE
-//    public void enviarPost2(String urlString, String json) throws IOException {
-//        HttpsURLConnection connection = null;
-//        try {
-//            URL url = new URL(urlString);
-//            connection = (HttpsURLConnection) url.openConnection();
-//
-//            // Configurações SSL para desenvolvimento (não use em produção)
-//            connection.setSSLSocketFactory(SSLCertificateSocketFactory.getInsecure(0, null));
-//            connection.setHostnameVerifier(new AllowAllHostnameVerifier());
-//
-//            connection.setRequestMethod("POST");
-//            connection.setRequestProperty("Content-Type", "application/json");
-//            connection.setDoOutput(true);
-//
-//            // Escreve o JSON no corpo da requisição
-//            try (OutputStream os = connection.getOutputStream()) {
-//                byte[] input = json.getBytes("utf-8");
-//                os.write(input, 0, input.length);
-//            }
-//
-//            // Verifica a resposta
-//            int responseCode = connection.getResponseCode();
-//            if (responseCode != HttpURLConnection.HTTP_CREATED && responseCode != HttpURLConnection.HTTP_OK) {
-//                throw new IOException("HTTP error code: " + responseCode);
-//            }
-//
-//        } finally {
-//            if (connection != null) {
-//                connection.disconnect();
-//            }
-//        }
-//    }
 
     // Método para converter InputStream em String
     public String converter(InputStream inputStream) {
